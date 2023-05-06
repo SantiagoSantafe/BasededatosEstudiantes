@@ -54,8 +54,16 @@ public class Estudiante {
         if (getClass() != obj.getClass())
             return false;
         Estudiante other = (Estudiante) obj;
-        if (codigo != other.codigo)
-            return false;
-        return true;
+        return codigo == other.codigo;
+    }
+
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                "nombre='" + nombre + '\'' +
+                ", codigo=" + codigo +
+                ", semestre=" + semestre +
+                ", facultad='" + facultad + '\'' +
+                '}';
     }
 }

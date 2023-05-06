@@ -55,4 +55,11 @@ public class Controller {
         estudianteList.add(estudiante);
         return "Estudiante ingresado correctamente";
     }
+
+    @Override
+    public String toString() {
+        return "Controller{" +
+                "estudianteList=" + estudianteList +
+                '}';
+    }
 }
