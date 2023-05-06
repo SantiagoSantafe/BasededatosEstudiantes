@@ -61,14 +61,18 @@ public class Controller {
     }
 
     @GetMapping(path = "/estudiante/actualizar/{codigo}")
-    public void actualizarEstudiante(@PathVariable int codigo, @RequestBody Estudiante estudiante) {
+    public String actualizarEstudiante(@PathVariable int codigo, @RequestBody Estudiante estudiante) {
         for (Estudiante estudiante2 : estudianteList) {
             if (estudiante2.getCodigo()== codigo) {
                 estudiante2.setFacultad(estudiante.getFacultad());
                 estudiante2.setNombre(estudiante.getNombre());
                 estudiante2.setSemestre(estudiante.getSemestre());
+                return "El estudiante ha sido actualizado";
             }
         }
-
+        return "No existe un estudiante con ese codigo";
+    }
+    public void name() {
+        
     }
 }
