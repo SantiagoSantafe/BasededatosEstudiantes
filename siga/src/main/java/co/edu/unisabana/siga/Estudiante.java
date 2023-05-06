@@ -4,15 +4,15 @@ public class Estudiante {
     private String nombre;
     private int codigo;
     private int semestre;
-    private String genero;
+    private String facultad;
     
     public Estudiante() {
     }
-    public Estudiante(String nombre, int codigo, int semestre, String genero) {
+    public Estudiante(String nombre, int codigo, int semestre, String facultad) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.semestre = semestre;
-        this.genero = genero;
+        this.facultad = facultad;
     }
     public String getNombre() {
         return nombre;
@@ -32,11 +32,11 @@ public class Estudiante {
     public void setSemestre(int semestre) {
         this.semestre = semestre;
     }
-    public String getGenero() {
-        return genero;
+    public String getFacultad() {
+        return facultad;
     }
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setFacultad(String genero) {
+        this.facultad = genero;
     }
     @Override
     public int hashCode() {
