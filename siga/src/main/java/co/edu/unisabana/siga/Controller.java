@@ -69,6 +69,5 @@ public class Controller {
                 estudiante2.setSemestre(estudiante.getSemestre());
             }
         }
-
     }
 }
