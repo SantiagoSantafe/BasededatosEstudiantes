@@ -49,10 +49,11 @@ public class Controller {
         }
         return new Estudiante();
     }
-    @PostMapping (path = "/estudiante/crear")
-    public String crearEstudiante(@RequestBody Estudiante estudiante) {
+    @PostMapping (path = "/estudiante/agregar")
+    public String agregarEstudiante(@RequestBody Estudiante estudiante) {
         estudiante.setCodigo((int)(Math.random()*1000));
         estudianteList.add(estudiante);
         return "Estudiante ingresado correctamente";
     }
+    
 }
