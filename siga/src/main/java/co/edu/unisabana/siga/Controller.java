@@ -6,15 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class Controller {
     List<Estudiante> estudianteList=new ArrayList<>();
-    
-    /*public Controller() {
-        this.estudianteList = new ArrayList<>();
-        estudianteList.add(new Estudiante("Santiago", 2525, 3, "femenino"));
-        estudianteList.add(new Estudiante("xoxo", 2452, 3, "Masculino"));
-        estudianteList.add(new Estudiante("caca", 4132, 3, "Masculino"));
-        estudianteList.add(new Estudiante("fsagv", 1522, 3, "Masculino"));
-        estudianteList.add(new Estudiante("afas", 8994, 4, "Masculino"));
-    }*/
+
     @GetMapping(path = "/estudiantes/todos")
     public List<Estudiante> listaest() {
         return estudianteList;
