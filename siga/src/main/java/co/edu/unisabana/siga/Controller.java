@@ -52,7 +52,7 @@ public class Controller {
             }
         }
         return "No se encontro Estudiante";
-        
+    }
     @GetMapping(path = "/estudiante/actualizar/{codigo}")
     public String actualizarEstudiante(@PathVariable int codigo, @RequestBody Estudiante estudiante) {
         for (Estudiante estudiante2 : estudianteList) {
