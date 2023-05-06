@@ -31,10 +31,10 @@ public class Controller {
     }
 
     @GetMapping(path = "/estudiantes")
-    public List<Estudiante> obtenerEstporSemestre(@RequestParam int semestre, @RequestParam String genero) {
+    public List<Estudiante> obtenerEstporSemestre(@RequestParam int semestre, @RequestParam String facultad) {
         List<Estudiante> busqueda= new ArrayList<>();
         for (Estudiante estudiante: estudianteList){
-            if (estudiante.getSemestre()== semestre && estudiante.getGenero()==genero) {
+            if (estudiante.getSemestre()== semestre && estudiante.getFacultad().equals(facultad)) {
                 busqueda.add(estudiante);
             }
         }
