@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
-    List<Estudiante> estudianteList=new ArrayList<>();
+    List<Estudiante> estudianteList = new ArrayList<>();
+
     @GetMapping(path = "/saludameporfavor")
     public String saludar() {
         return "hola";
     }
+
     @GetMapping(path = "/estudiantes/todos")
     public List<Estudiante> listaest() {
         return estudianteList;
@@ -43,20 +45,22 @@ public class Controller {
         estudianteList.add(estudiante);
         return "Estudiante ingresado correctamente";
     }
+
     @DeleteMapping(path = "estudiante/eliminar/{codigo}")
-    public String eliminarEstudiantePorCodigo(@PathVariable int codigo){
-        for (Estudiante estudiante: estudianteList){
-            if (estudiante.getCodigo()==codigo){
+    public String eliminarEstudiantePorCodigo(@PathVariable int codigo) {
+        for (Estudiante estudiante : estudianteList) {
+            if (estudiante.getCodigo() == codigo) {
                 estudianteList.remove(estudiante);
                 return "Se elimino con exito";
             }
         }
         return "No se encontro Estudiante";
     }
+
     @GetMapping(path = "/estudiante/actualizar/{codigo}")
     public String actualizarEstudiante(@PathVariable int codigo, @RequestBody Estudiante estudiante) {
         for (Estudiante estudiante2 : estudianteList) {
-            if (estudiante2.getCodigo()== codigo) {
+            if (estudiante2.getCodigo() == codigo) {
                 estudiante2.setFacultad(estudiante.getFacultad());
                 estudiante2.setNombre(estudiante.getNombre());
                 estudiante2.setSemestre(estudiante.getSemestre());
@@ -64,8 +68,5 @@ public class Controller {
             }
         }
         return "No existe un estudiante con ese codigo";
-    }
-    public void name() {
-        
     }
 }
