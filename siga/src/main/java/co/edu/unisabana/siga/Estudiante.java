@@ -56,14 +56,4 @@ public class Estudiante {
         Estudiante other = (Estudiante) obj;
         return codigo == other.codigo;
     }
-
-    @Override
-    public String toString() {
-        return "Estudiante{" +
-                "nombre='" + nombre + '\'' +
-                ", codigo=" + codigo +
-                ", semestre=" + semestre +
-                ", facultad='" + facultad + '\'' +
-                '}';
-    }
 }

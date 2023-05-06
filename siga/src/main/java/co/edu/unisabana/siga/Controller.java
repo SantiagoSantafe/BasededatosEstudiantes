@@ -1,12 +1,7 @@
 package co.edu.unisabana.siga;
 import java.util.*;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
@@ -20,11 +15,6 @@ public class Controller {
         estudianteList.add(new Estudiante("fsagv", 1522, 3, "Masculino"));
         estudianteList.add(new Estudiante("afas", 8994, 4, "Masculino"));
     }*/
-
-    @GetMapping(path = "/saludameporfavor")
-    public String saludar() {
-        return "hola";
-    }
     @GetMapping(path = "/estudiantes/todos")
     public List<Estudiante> listaest() {
         return estudianteList;
@@ -55,11 +45,14 @@ public class Controller {
         estudianteList.add(estudiante);
         return "Estudiante ingresado correctamente";
     }
-
-    @Override
-    public String toString() {
-        return "Controller{" +
-                "estudianteList=" + estudianteList +
-                '}';
+    @DeleteMapping(path = "estudiante/eliminar/{codigo}")
+    public String eliminarEstudiantePorCodigo(@PathVariable int codigo){
+        for (Estudiante estudiante: estudianteList){
+            if (estudiante.getCodigo()==codigo){
+                estudianteList.remove(estudiante);
+                return "Se elimino con exito";
+            }
+        }
+        return "No se enctro Estudiante";
     }
 }
