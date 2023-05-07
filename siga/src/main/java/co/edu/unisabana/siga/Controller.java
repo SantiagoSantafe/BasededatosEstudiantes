@@ -42,6 +42,16 @@ public class Controller {
         }
         return busqueda;
     }
+    @GetMapping(path = "/buscarestudiante")
+    public List<Estudiante> obtenerEstporFacultad(@RequestParam String facultad, @RequestParam int cantidad_resultados) {
+        List<Estudiante> busqueda= new ArrayList<>();
+        for (Estudiante estudiante: estudianteList){
+            if ( estudiante.getFacultad().equalsIgnoreCase(facultad) && busqueda.size()< cantidad_resultados){
+                busqueda.add(estudiante);
+            }
+        }
+        return busqueda;
+    }
 
     @GetMapping(path = "/estudiante/{codigo}")
     public Estudiante obtenerEstudianteporCodigo(@PathVariable int codigo) {
