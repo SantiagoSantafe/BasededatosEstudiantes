@@ -5,15 +5,19 @@ public class Estudiante {
     private int codigo;
     private int semestre;
     private String facultad;
-    
+    private String genero;
+    private String programa;
     public Estudiante() {
     }
-    public Estudiante(String nombre, int codigo, int semestre, String facultad) {
+    public Estudiante(String nombre, int codigo, int semestre, String facultad,String genero, String programa) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.semestre = semestre;
         this.facultad = facultad;
+        this.genero=genero;
+        this.programa=programa;
     }
+    
     public String getNombre() {
         return nombre;
     }
@@ -35,8 +39,14 @@ public class Estudiante {
     public String getFacultad() {
         return facultad;
     }
-    public void setFacultad(String genero) {
-        this.facultad = genero;
+    public void setFacultad(String facultad) {
+        this.facultad = facultad;
+    }
+    public String getGenero() {
+        return genero;
+    }
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
     @Override
     public int hashCode() {
@@ -55,5 +65,11 @@ public class Estudiante {
             return false;
         Estudiante other = (Estudiante) obj;
         return codigo == other.codigo;
+    }
+    public String getPrograma() {
+        return programa;
+    }
+    public void setPrograma(String programa) {
+        this.programa = programa;
     }
 }
