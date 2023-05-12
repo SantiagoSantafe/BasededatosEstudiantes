@@ -57,14 +57,14 @@ public class Controller {
     }
 
     @DeleteMapping(path = "estudiante/eliminar/{codigo}")// con este path se elimina un estudiante ingresando su codigo
-    public String eliminarEstudiantePorCodigo(@PathVariable int codigo) {
+    public respuesta eliminarEstudiantePorCodigo(@PathVariable int codigo) {
         for (Estudiante estudiante : estudianteList) {
             if (estudiante.getCodigo() == codigo) {
                 estudianteList.remove(estudiante);
-                return "Se elimino con exito";
+                return new respuesta("Se elimino con exito");
             }
         }
-        return "No se encontro Estudiante";
+        return new respuesta("No se encontro Estudiante");
     }
 
     @GetMapping(path = "/estudiante/actualizar/{codigo}") // con este path se puede actualizar un estudiante ingresando su codigo
