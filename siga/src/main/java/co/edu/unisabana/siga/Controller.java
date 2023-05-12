@@ -74,7 +74,7 @@ public class Controller {
                 estudiante2.setFacultad(estudiante.getFacultad());
                 estudiante2.setNombre(estudiante.getNombre());
                 estudiante2.setSemestre(estudiante.getSemestre());
-                estudiante2.setCodigo(estudiante.getCodigo());
+                estudiante2.setCodigo(codigo);
                 estudiante2.setGenero(estudiante.getGenero());
                 estudiante2.setPrograma(estudiante.getPrograma());
                 return "El estudiante ha sido actualizado";
