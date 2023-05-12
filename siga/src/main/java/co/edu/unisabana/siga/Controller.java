@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
-    List<Estudiante> estudianteList = new ArrayList<>();
 
+    List<Estudiante> estudianteList = new ArrayList<>();
     @GetMapping(path = "/saludameporfavor")
     public String saludar() {
         return "hola";
@@ -29,10 +29,10 @@ public class Controller {
         return busqueda;
     }
     @GetMapping(path = "/estudiante/buscar")// con este path se puede buscar un estudiante ingresando su facultad y la cantidad de resultados que quiere hallar
-    public List<Estudiante> obtenerEstporFacultad(@RequestParam String facultad, @RequestParam int cantidad_resultados) {
+    public List<Estudiante> obtenerEstporFacultad(@RequestBody String facultad) {
         List<Estudiante> busqueda= new ArrayList<>();
         for (Estudiante estudiante: estudianteList){
-            if ( estudiante.getFacultad().equalsIgnoreCase(facultad) && busqueda.size()< cantidad_resultados){
+            if ( estudiante.getFacultad().equalsIgnoreCase(facultad)){
                 busqueda.add(estudiante);
             }
         }
@@ -50,10 +50,10 @@ public class Controller {
     }
 
     @PostMapping(path = "/estudiante/agregar")// con este path se agrega un estudiante ingresando su nombre, facultad y semestre en el body.
-    public String agregarEstudiante(@RequestBody Estudiante estudiante) {
+    public respuesta agregarEstudiante(@RequestBody Estudiante estudiante) {
         estudiante.setCodigo((int) (Math.random() * 1000));
         estudianteList.add(estudiante);
-        return "Estudiante ingresado correctamente";
+        return new respuesta("Estudiante ingresado correctamente");
     }
 
     @DeleteMapping(path = "estudiante/eliminar/{codigo}")// con este path se elimina un estudiante ingresando su codigo
@@ -74,6 +74,9 @@ public class Controller {
                 estudiante2.setFacultad(estudiante.getFacultad());
                 estudiante2.setNombre(estudiante.getNombre());
                 estudiante2.setSemestre(estudiante.getSemestre());
+                estudiante2.setCodigo(estudiante.getCodigo());
+                estudiante2.setGenero(estudiante.getGenero());
+                estudiante2.setPrograma(estudiante.getPrograma());
                 return "El estudiante ha sido actualizado";
             }
         }
