@@ -6,10 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
+
     List<Estudiante> estudianteList = new ArrayList<>();
-    public Controller(){
-        estudianteList.add(new Estudiante("jose",1,2,"medicina","Masculino"));
-    }
     @GetMapping(path = "/saludameporfavor")
     public String saludar() {
         return "hola";
@@ -69,13 +67,16 @@ public class Controller {
         return "No se encontro Estudiante";
     }
 
-    @GetMapping(path = "/estudiante/actualizar/{codigo}") // con este path se puede actualizar un estudiante ingresando su codigo
+    @PutMapping(path = "/estudiante/actualizar/{codigo}") // con este path se puede actualizar un estudiante ingresando su codigo
     public String actualizarEstudiante(@PathVariable int codigo, @RequestBody Estudiante estudiante) {
         for (Estudiante estudiante2 : estudianteList) {
             if (estudiante2.getCodigo() == codigo) {
                 estudiante2.setFacultad(estudiante.getFacultad());
                 estudiante2.setNombre(estudiante.getNombre());
                 estudiante2.setSemestre(estudiante.getSemestre());
+                estudiante2.setCodigo(estudiante.getCodigo());
+                estudiante2.setGenero(estudiante.getGenero());
+                estudiante2.setPrograma(estudiante.getPrograma());
                 return "El estudiante ha sido actualizado";
             }
         }
