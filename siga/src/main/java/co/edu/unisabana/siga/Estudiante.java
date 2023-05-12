@@ -5,15 +5,19 @@ public class Estudiante {
     private int codigo;
     private int semestre;
     private String facultad;
+    private String genero;
     
     public Estudiante() {
     }
-    public Estudiante(String nombre, int codigo, int semestre, String facultad) {
+
+    public Estudiante(String nombre, int codigo, int semestre, String facultad, String genero) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.semestre = semestre;
         this.facultad = facultad;
+        this.genero = genero;
     }
+
     public String getNombre() {
         return nombre;
     }
@@ -38,6 +42,15 @@ public class Estudiante {
     public void setFacultad(String genero) {
         this.facultad = genero;
     }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

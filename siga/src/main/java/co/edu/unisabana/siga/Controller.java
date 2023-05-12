@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class Controller {
     List<Estudiante> estudianteList = new ArrayList<>();
-
+    public Controller(){
+        estudianteList.add(new Estudiante("jose",1,2,"medicina","Masculino"));
+    }
     @GetMapping(path = "/saludameporfavor")
     public String saludar() {
         return "hola";
