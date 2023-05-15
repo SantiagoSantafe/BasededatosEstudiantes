@@ -29,10 +29,10 @@ public class Controller {
         return busqueda;
     }
     @GetMapping(path = "/estudiante/buscar")// con este path se puede buscar un estudiante ingresando su facultad y la cantidad de resultados que quiere hallar
-    public List<Estudiante> obtenerEstporFacultad(@RequestParam String facultad, @RequestParam int cantidad_resultados) {
+    public List<Estudiante> obtenerEstporFacultad(@RequestParam String facultad, @RequestParam int cantidadResultados) {
         List<Estudiante> busqueda= new ArrayList<>();
         for (Estudiante estudiante: estudianteList){
-            if ( estudiante.getFacultad().equalsIgnoreCase(facultad) && busqueda.size()< cantidad_resultados){
+            if ( estudiante.getFacultad().equalsIgnoreCase(facultad) && busqueda.size()< cantidadResultados){
                 busqueda.add(estudiante);
             }
         }
