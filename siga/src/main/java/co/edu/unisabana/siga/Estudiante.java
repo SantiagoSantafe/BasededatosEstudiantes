@@ -1,52 +1,35 @@
 package co.edu.unisabana.siga;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.validation.constraints.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Estudiante {
+
+    @NotBlank
+    @NotEmpty (message = "Ingrese un valor para el nombre")
+    @NotNull(message = "Mande el campooo!!!!!!!") //Validaciones
+    @Size(min = 2,max = 30) //Validacion del tamaño del String
     private String nombre;
     private int codigo;
+
+
+    @NotNull(message = "Mande el campooo!!!!!!!")
+    @Min(1) //Validaciones de minimo tantos digitos.
+    @Max(12)
     private int semestre;
-    private String facultad;
+    private Enum<FacultadEnum> facultad; //Este solo permite una sarie de datos. Los que estab dentro del enum
     private String genero;
     private String programa;
-    public Estudiante() {
-    }
-    public Estudiante(String nombre, int codigo, int semestre, String facultad,String genero,String programa) {
-        this.nombre = nombre;
-        this.codigo = codigo;
-        this.semestre = semestre;
-        this.facultad = facultad;
-        this.genero=genero;
-        this.programa=programa;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public int getCodigo() {
-        return codigo;
-    }
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-    public int getSemestre() {
-        return semestre;
-    }
-    public void setSemestre(int semestre) {
-        this.semestre = semestre;
-    }
-    public String getFacultad() {
-        return facultad;
-    }
-    public void setFacultad(String facultad) {
-        this.facultad = facultad;
-    }
-    public String getGenero() {
-        return genero;
-    }
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
+
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -65,10 +48,5 @@ public class Estudiante {
         Estudiante other = (Estudiante) obj;
         return codigo == other.codigo;
     }
-    public String getPrograma() {
-        return programa;
-    }
-    public void setPrograma(String programa) {
-        this.programa = programa;
-    }
+
 }

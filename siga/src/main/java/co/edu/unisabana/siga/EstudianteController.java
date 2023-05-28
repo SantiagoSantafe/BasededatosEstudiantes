@@ -4,8 +4,11 @@ import java.util.*;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
-public class Controller {
+@RequestMapping(path = "/estudiantes")
+public class EstudianteController {
 
     List<Estudiante> estudianteList = new ArrayList<>();
     @GetMapping(path = "/saludameporfavor")
@@ -13,12 +16,12 @@ public class Controller {
         return "hola";
     }
 
-    @GetMapping(path = "/estudiantes/todos")
+    @GetMapping(path = "/todos")
     public List<Estudiante> listaest() {
         return estudianteList;
     }
 
-    @GetMapping(path = "/estudiantes")
+    @GetMapping(path = "/mostrar")
     public List<Estudiante> obtenerEstporSemestre(@RequestParam int semestre, @RequestParam String facultad) {
         List<Estudiante> busqueda = new ArrayList<>();
         for (Estudiante estudiante : estudianteList) {
@@ -28,18 +31,18 @@ public class Controller {
         }
         return busqueda;
     }
-    @GetMapping(path = "/estudiante/buscar")// con este path se puede buscar un estudiante ingresando su facultad y la cantidad de resultados que quiere hallar
-    public List<Estudiante> obtenerEstporFacultad(@RequestParam String facultad, @RequestParam int cantidad_resultados) {
-        List<Estudiante> busqueda= new ArrayList<>();
+    @GetMapping(path = "/buscar")// con este path se puede buscar un estudiante ingresando su facultad y la cantidad de resultados que quiere hallar
+    public List<Estudiante> obtenerEstporFacultad(@RequestParam FacultadEnum facultad, @RequestParam int cantidad_resultados) {
+        List<Estudiante> busqueda= new ArrayList<>(); //Se debe obtener un FacultadEnum como parametro cuando lo compare
         for (Estudiante estudiante: estudianteList){
-            if ( estudiante.getFacultad().equalsIgnoreCase(facultad) && busqueda.size()< cantidad_resultados){
+            if ( estudiante.getFacultad().equals(facultad) && busqueda.size()< cantidad_resultados){
                 busqueda.add(estudiante);
             }
         }
         return busqueda;
     }
 
-    @GetMapping(path = "/estudiante/{codigo}")
+    @GetMapping(path = "/obtenerCodigo/{codigo}")
     public Estudiante obtenerEstudianteporCodigo(@PathVariable int codigo) {
         for (Estudiante estudiante : estudianteList) {
             if (estudiante.getCodigo() == codigo) {
@@ -49,14 +52,14 @@ public class Controller {
         return new Estudiante();
     }
 
-    @PostMapping(path = "/estudiante/agregar")// con este path se agrega un estudiante ingresando su nombre, facultad y semestre en el body.
-    public String agregarEstudiante(@RequestBody Estudiante estudiante) {
+    @PostMapping(path = "/agregar")// con este path se agrega un estudiante ingresando su nombre, facultad y semestre en el body.
+    public String agregarEstudiante(@RequestBody @Valid Estudiante estudiante) {
         estudiante.setCodigo((int) (Math.random() * 1000));
         estudianteList.add(estudiante);
         return "Estudiante ingresado correctamente";
     }
 
-    @DeleteMapping(path = "estudiante/eliminar/{codigo}")// con este path se elimina un estudiante ingresando su codigo
+    @DeleteMapping(path = "/eliminar/{codigo}")// con este path se elimina un estudiante ingresando su codigo
     public String eliminarEstudiantePorCodigo(@PathVariable int codigo) {
         for (Estudiante estudiante : estudianteList) {
             if (estudiante.getCodigo() == codigo) {
@@ -67,7 +70,7 @@ public class Controller {
         return "No se encontro Estudiante";
     }
 
-    @PutMapping(path = "/estudiante/actualizar/{codigo}") // con este path se puede actualizar un estudiante ingresando su codigo
+    @PutMapping(path = "/actualizar/{codigo}") // con este path se puede actualizar un estudiante ingresando su codigo
     public String actualizarEstudiante(@PathVariable int codigo, @RequestBody Estudiante estudiante) {
         for (Estudiante estudiante2 : estudianteList) {
             if (estudiante2.getCodigo() == codigo) {
